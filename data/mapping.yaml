@@ -41,7 +41,7 @@
   prefix::ganeti::role:           'unassigned'
   prefix::gerrit::role:           'unassigned'
   prefix::graphite::role:         'unassigned'
-  prefix::icinga::role:           'unassigned'
+  prefix::icinga::role:           'icinga'
   prefix::install::role:          'unassigned'
   prefix::kafka::role:            'unassigned'
   prefix::kafka-jumbo::role:      'unassigned'

@@ -13,12 +13,19 @@ Requirements
 
 Usage
 ---
-In the repo directory:
+In the repo directory, start the puppet server:
 ```bash
 librarian-puppet install
 vagrant up puppet
 vagrant ssh puppet
 kickstartpuppet
+```
+
+For other hosts:
+```bash
+vagrant up example
+vagrant ssh example
+runpuppet
 ```
 
 Additional Hosts
@@ -38,5 +45,8 @@ Vagrant_config.yaml
 
 TODO
 ---
-* VirtualBox Support
-* DNS currently relies on libvirt configuring Dnsmasq correctly.  Should be modularized.
+* VirtualBox Support.
+* DNS and DHCP currently rely on libvirt configuring DNSmasq correctly.  For Vagrant, this should be a service on the puppet master.
+* Linter and syntax checks.
+* Secrets management.
+* r10k environments

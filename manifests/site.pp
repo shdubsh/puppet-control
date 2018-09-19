@@ -2,8 +2,8 @@
 # Vagrant puppetmaster
 node 'puppet.test' {
   include base
-  include role::puppetmaster
-  include role::puppetmaster_vagrant
+  include profile::puppetmaster
+  include profile::puppetmaster_vagrant
 }
 
 node default {

@@ -1,0 +1,4 @@
+---
+  role::puppetmaster::description: 'Puppet server'
+  role::puppetmaster::includes:
+    - 'profile::puppetmaster'
