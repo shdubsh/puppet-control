@@ -1,0 +1,28 @@
+---
+  version: 5
+  defaults:
+    datadir: data
+    data_hash: yaml_data
+
+  hierarchy:
+    - name: "Prefix to role mapping"
+      path: "mapping.yaml"
+
+    - name: "Hostname specific data"
+      path: "host/%{::fqdn}.yaml"
+
+    - name: "Datacenter and role specific data"
+      path: "datacenter/%{datacenter}/role/%{role}.yaml"
+
+    - name: "Datacenter specific data"
+      path: "datacenter/%{datacenter}/common.yaml"
+
+    - name: "Role specific data"
+      path: "role/%{role}.yaml"
+
+    - name: "Global configuration"
+      path: "global/common.yaml"
+
+# Example
+#    - name: "Specific global configuration"
+#      path: "global/specific_example.yaml"
