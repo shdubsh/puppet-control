@@ -18,3 +18,10 @@ echo 'sudo systemctl restart puppetdb' >> /usr/local/bin/kickstartpuppet
 echo '/usr/local/bin/runpuppet' >> /usr/local/bin/kickstartpuppet
 echo 'echo ################  Puppet Kickstart Complete ################' >> /usr/local/bin/kickstartpuppet
 chmod +x /usr/local/bin/kickstartpuppet
+
+# Vagrant dir is not available at provision time.  Helper script to load after ssh.
+echo '#!/bin/bash' > /usr/local/bin/customize
+echo 'bash /vagrant/customize.sh' >> /usr/local/bin/customize
+chmod +x /usr/local/bin/customize
+
+# TODO: Modify MOTD with helpful info.
