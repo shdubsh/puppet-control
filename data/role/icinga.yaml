@@ -4,19 +4,7 @@
   role::icinga::includes:
     - 'profile::icinga'
 
-  profile::icinga::cfg_files:
-    - '/etc/icinga/contactgroups.cfg'
-    - '/etc/icinga/contacts.cfg'
-    - '/etc/icinga/timeperiods.cfg'
-    - '/etc/icinga/notification_commands.cfg'
-    - '/etc/icinga/notification_commands.cfg'
-    - '/etc/icinga/puppet_hosts.cfg'
-    - '/etc/icinga/puppet_services.cfg'
-
-  profile::icinga::cfg_dirs:
-    - '/etc/icinga/commands'
-
-  profile::icinga::contactgroups:
-    admins:
-      alias: admins
-      members: [ 'irc' ]
+#  icinga::contactgroups:
+#    admins:
+#      alias: admins
+#      members: [ 'irc' ]

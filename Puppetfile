@@ -18,3 +18,4 @@ mod 'motd',                 :git => 'git@github.com:shdubsh/puppet-motd.git',   
 mod 'base',                 :git => 'git@github.com:shdubsh/puppet-base.git',                     :tag => '0.0.1'
 mod 'role',                 :git => 'git@github.com:shdubsh/puppet-role.git'
 mod 'profile',              :git => 'git@github.com:shdubsh/puppet-profile.git'
+mod 'icinga',               :git => 'git@github.com:shdubsh/puppet-icinga.git'
