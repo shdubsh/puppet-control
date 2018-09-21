@@ -4,7 +4,9 @@
   role::icinga::includes:
     - 'profile::icinga'
 
-#  icinga::contactgroups:
-#    admins:
-#      alias: admins
-#      members: [ 'irc' ]
+  icinga::contactgroups:
+    admins:
+      alias: admins
+      #members: [ 'irc' ]
+
+  icinga::cfg_dirs: [ '/etc/nagios' ]
