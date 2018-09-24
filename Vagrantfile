@@ -6,6 +6,7 @@ require 'yaml'
 custom_config = YAML.load(File.open('./Vagrant_config.yaml').read)
 default_domain = 'test'
 hosts = custom_config['hosts']
+# Need vagrant-vbguest plugin to get virtualbox guest additions installed
 # https://stackoverflow.com/a/51925021
 # Plugins
 #
@@ -20,6 +21,8 @@ if ARGV[0] != 'plugin'
     required_plugins = [
         'vagrant-vbguest'
     ]
+    # https://github.com/hashicorp/vagrant/issues/3792
+    # https://gist.github.com/blech75/8e0808e1982b6c605be5cad35fc13350
     vbox_version = `vboxmanage --version | cut -d '_' -f 1`.chomp
     if not File.exists?("VBoxGuestAdditions_#{vbox_version}.iso")
       system "wget https://download.virtualbox.org/virtualbox/#{vbox_version}/VBoxGuestAdditions_#{vbox_version}.iso"

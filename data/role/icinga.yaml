@@ -8,5 +8,29 @@
     admins:
       alias: admins
       #members: [ 'irc' ]
+    wmcs-bots:
+      alias: wmcs-bots
+    team-scoring:
+      alias: team-scoring
+    wikidata:
+      alias: wikidata
+    wikitech-static:
+      alias: wikitech-static
+    wmcs-team:
+      alias: wmcs-team
+    team-performance:
+      alias: team-performance
+    team-paws:
+      alias: team-paws
+    team-services:
+      alias: team-services
+    team-reading-web:
+      alias: team-reading-web
+    wdqs-admins:
+      alias: wdqs-admins
+    legal:
+      alias: legal
+    sms:
+      alias: sms
 
   icinga::cfg_dirs: [ '/etc/nagios' ]
