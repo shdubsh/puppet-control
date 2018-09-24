@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This may not be ideal, but it resolves some issues
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
 wget https://apt.puppetlabs.com/puppet5-release-stretch.deb
 dpkg -i puppet5-release-stretch.deb
 apt update
