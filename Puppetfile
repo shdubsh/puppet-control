@@ -19,3 +19,5 @@ mod 'base',                 :git => 'git@github.com:shdubsh/puppet-base.git',   
 mod 'role',                 :git => 'git@github.com:shdubsh/puppet-role.git'
 mod 'profile',              :git => 'git@github.com:shdubsh/puppet-profile.git'
 mod 'icinga',               :git => 'git@github.com:shdubsh/puppet-icinga.git'
+mod 'ircecho',              :git => 'git@github.com:shdubsh/puppet-ircecho.git'
+mod 'monitoring',           :git => 'git@github.com:shdubsh/puppet-monitoring.git'
