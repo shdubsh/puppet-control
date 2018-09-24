@@ -3,18 +3,59 @@
 
 require 'yaml'
 
-config = YAML.load(File.open('./Vagrant_config.yaml').read)
+custom_config = YAML.load(File.open('./Vagrant_config.yaml').read)
 default_domain = 'test'
-hosts = config['hosts']
+hosts = custom_config['hosts']
+# https://stackoverflow.com/a/51925021
+# Plugins
+#
+# Check if the first argument to the vagrant
+# command is plugin or not to avoid the loop
+if ARGV[0] != 'plugin'
+
+  # Define the plugins in an array format
+  if custom_config['provider'] == 'libvirt'
+    required_plugins = []
+  else
+    required_plugins = [
+        'vagrant-vbguest'
+    ]
+    vbox_version = `vboxmanage --version | cut -d '_' -f 1`.chomp
+    if not File.exists?("VBoxGuestAdditions_#{vbox_version}.iso")
+      system "wget https://download.virtualbox.org/virtualbox/#{vbox_version}/VBoxGuestAdditions_#{vbox_version}.iso"
+    end
+  end
+  plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
+  if not plugins_to_install.empty?
+
+    puts "Installing plugins: #{plugins_to_install.join(' ')}"
+    if system "vagrant plugin install #{plugins_to_install.join(' ')}"
+      exec "vagrant #{ARGV.join(' ')}"
+    else
+      abort "Installation of one or more plugins has failed. Aborting."
+    end
+  end
+end
 
 Vagrant.configure("2") do |config|
-  config.vm.define "puppet" do |puppet|
-    puppet.vm.box = "debian/stretch64"
-    puppet.vm.hostname = "puppet" + '.' + default_domain
-    puppet.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: 3
-    puppet.vm.provider :libvirt do |libvirt|
-      libvirt.cpus = 4
-      libvirt.memory = 2048
+  config.vm.define 'puppet' do |puppet|
+    puppet.vm.box = 'debian/stretch64'
+    puppet.vm.hostname = 'puppet' + '.' + default_domain
+    if custom_config['provider'] == 'libvirt'
+      puppet.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_version: 3
+      puppet.vm.provider :libvirt do |libvirt|
+        libvirt.cpus = 4
+        libvirt.memory = 2048
+      end
+    else
+      config.vbguest.iso_path = "./VBoxGuestAdditions_#{vbox_version}.iso"
+      config.vbguest.no_remote = true
+      puppet.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_udp: false
+      puppet.vm.provider :virtualbox do |virtualbox|
+        virtualbox.cpus = 4
+        virtualbox.memory = 2048
+      end
+      config.vm.network :private_network, type: 'dhcp'
     end
     puppet.vm.provision :shell do |s|
       s.path = './provision.sh'
@@ -25,10 +66,19 @@ Vagrant.configure("2") do |config|
     config.vm.define host do |c|
       c.vm.hostname = host + '.' + default_domain
       c.vm.box = hosts[host]['box']
-      c.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_version: 3
-      c.vm.provider :libvirt do |libvirt|
-        libvirt.cpus = hosts[host]['cores'] == nil ? 2 : hosts[host]['cores']
-        libvirt.memory = hosts[host]['memory'] == nil ? 1024 : hosts[host]['memory']
+      if custom_config['provider'] == 'libvirt'
+        c.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_version: 3
+        c.vm.provider :libvirt do |libvirt|
+          libvirt.cpus = hosts[host]['cores'] == nil ? 2 : hosts[host]['cores']
+          libvirt.memory = hosts[host]['memory'] == nil ? 1024 : hosts[host]['memory']
+        end
+      else
+        config.vbguest.no_remote = true
+        c.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_udp: false, nfs_version: 3
+        c.vm.provider :virtualbox do |virtualbox|
+          virtualbox.cpus = hosts[host]['cores'] == nil ? 2 : hosts[host]['cores']
+          virtualbox.memory = hosts[host]['memory'] == nil ? 1024 : hosts[host]['memory']
+        end
       end
       c.vm.provision :shell do |s|
         s.path = './provision.sh'

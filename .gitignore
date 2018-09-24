@@ -3,3 +3,4 @@ Vagrant_config.yaml
 .idea
 .vagrant
 customize.sh
+VBoxGuestAdditions_*.iso
