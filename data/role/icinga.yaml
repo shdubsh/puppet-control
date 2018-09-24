@@ -32,5 +32,9 @@
       alias: legal
     sms:
       alias: sms
+    fr-tech:
+      alias: fr-tech
+    fr-tech-ops:
+      alias: fr-tech-ops
 
   icinga::cfg_dirs: [ '/etc/nagios' ]
