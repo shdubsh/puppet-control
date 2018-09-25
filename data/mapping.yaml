@@ -116,3 +116,5 @@
   prefix::wdqs::role:             'unassigned'
   prefix::webperf::role:          'unassigned'
   prefix::wtp::role:              'unassigned'
+
+  prefix::example::role:          'unassigned' # Demo

@@ -20,6 +20,8 @@ node 'puppet.test' {
   include base
   include profile::puppetmaster
   include profile::puppetmaster_vagrant
+  $role = 'puppetmaster'
+  $datacenter = 'test'
 }
 
 node default {
