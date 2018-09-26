@@ -45,7 +45,6 @@ Vagrant_config.yaml
 
 TODO
 ---
-* VirtualBox Support.
 * DNS and DHCP currently rely on libvirt configuring DNSmasq correctly.  For Vagrant, this should be a service on the puppet master.
 * Linter and syntax checks.
 * Secrets management.
