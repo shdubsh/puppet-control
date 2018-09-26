@@ -7,7 +7,7 @@ This code is in early development.  Things could change at any time.
 
 Requirements
 ---
-* Libvirt (tested 4.1.0)
+* Libvirt (tested 4.1.0) or VirtualBox (tested 5.2.18)
 * Vagrant (tested 2.0.2)
 * librarian-puppet-simple (tested 0.0.5)
 
