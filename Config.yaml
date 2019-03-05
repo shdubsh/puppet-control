@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+# vi: set ft=yaml :
+
+---
+  provider: 'libvirt'
+  hosts:
+    elasticsearch:
+      box: 'debian/stretch64'
+      cores: 2
+      memory: 4096
+    kafka:
+      box: 'debian/stretch64'
+      cores: 1
+      memory: 4096
+    generator:
+      box: 'debian/stretch64'
+      cores: 1
+      memory: 1024

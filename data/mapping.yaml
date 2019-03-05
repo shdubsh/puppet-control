@@ -33,7 +33,7 @@
   prefix::dns::role:              'unassigned'
   prefix::druid::role:            'unassigned'
   prefix::dumpsdata::role:        'unassigned'
-  prefix::elastic::role:          'unassigned'
+  prefix::elasticsearch::role:    'elasticsearch'
   prefix::es::role:               'unassigned'
   prefix::etcd::role:             'unassigned'
   prefix::etherpad::role:         'unassigned'
@@ -43,7 +43,7 @@
   prefix::graphite::role:         'unassigned'
   prefix::icinga::role:           'icinga'
   prefix::install::role:          'unassigned'
-  prefix::kafka::role:            'unassigned'
+  prefix::kafka::role:            'kafka'
   prefix::kafka-jumbo::role:      'unassigned'
   prefix::kafkamon::role:         'unassigned'
   prefix::knsq::role:             'unassigned'
@@ -118,3 +118,4 @@
   prefix::wtp::role:              'unassigned'
 
   prefix::example::role:          'unassigned' # Demo
+  prefix::generator::role:        'unassigned'

@@ -3,7 +3,7 @@
 
 require 'yaml'
 
-custom_config = YAML.load(File.open('./Vagrant_config.yaml').read)
+custom_config = YAML.load(File.open('./Config.yaml').read)
 default_domain = 'test'
 hosts = custom_config['hosts']
 # Need vagrant-vbguest plugin to get virtualbox guest additions installed

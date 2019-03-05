@@ -1,0 +1,7 @@
+---
+  role::elasticsearch::description: 'elasticsearch server'
+
+  role::elasticsearch::includes:
+    - 'profile::elasticsearch'
+    - 'profile::kibana'
+    - 'profile::logstash'

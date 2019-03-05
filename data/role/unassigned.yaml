@@ -1,2 +1,4 @@
 ---
   role::unassigned::description: 'This server has not been assigned a role.'
+  role::unassigned::includes:
+    - 'profile::rsyslog'

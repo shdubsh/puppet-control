@@ -11,7 +11,7 @@ apt update
 apt install -y puppet-agent
 
 echo '#!/bin/bash' > /usr/local/bin/runpuppet
-echo 'sudo /opt/puppetlabs/bin/puppet agent -t --environment production' >> /usr/local/bin/runpuppet
+echo 'sudo /opt/puppetlabs/bin/puppet agent -t --environment production $1' >> /usr/local/bin/runpuppet
 chmod +x /usr/local/bin/runpuppet
 
 echo '#!/bin/bash' > /usr/local/bin/kickstartpuppet

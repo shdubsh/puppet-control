@@ -1,0 +1,5 @@
+---
+role::kafka::description: 'Kafka Server'
+
+role::kafka::includes:
+  - 'profile::kafka'
