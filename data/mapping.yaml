@@ -94,7 +94,7 @@
   prefix::proton::role:           'unassigned'
   prefix::puppetboard::role:      'unassigned'
   prefix::puppetdb::role:         'unassigned'
-  prefix::puppetmaster::role:     'puppetmaster'
+  prefix::puppet::role:           'puppetmaster'
   prefix::pybal-test::role:       'unassigned'
   prefix::rbf::role:              'unassigned'
   prefix::rcs::role:              'unassigned'

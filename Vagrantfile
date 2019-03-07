@@ -3,7 +3,7 @@
 
 require 'yaml'
 
-custom_config = YAML.load(File.open('./Config.yaml').read)
+custom_config = YAML.load(File.open('vagrant/vagrant.yaml').read)
 default_domain = 'test'
 hosts = custom_config['hosts']
 # Need vagrant-vbguest plugin to get virtualbox guest additions installed
@@ -61,7 +61,7 @@ Vagrant.configure("2") do |config|
       config.vm.network :private_network, type: 'dhcp'
     end
     puppet.vm.provision :shell do |s|
-      s.path = './provision.sh'
+      s.path = './vagrant/provision.sh'
     end
   end
 
@@ -84,7 +84,11 @@ Vagrant.configure("2") do |config|
         end
       end
       c.vm.provision :shell do |s|
-        s.path = './provision.sh'
+        s.path = './vagrant/provision.sh'
+      end
+      c.trigger.before :destroy do |trigger|
+        trigger.info = 'Cleaning certificate from Puppet master...'
+        trigger.run = { inline: 'vagrant ssh puppet -c \'clean_node ' + c.vm.hostname + '\'' }
       end
     end
   end

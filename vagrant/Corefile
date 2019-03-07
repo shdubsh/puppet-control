@@ -1,0 +1,10 @@
+. {
+    proxy . 1.1.1.1:53
+    errors
+    log
+}
+test {
+  file /etc/coredns/zones/test
+  errors
+  log
+}

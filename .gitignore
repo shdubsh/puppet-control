@@ -2,5 +2,6 @@ modules
 Vagrant_config.yaml
 .idea
 .vagrant
-customize.sh
+vagrant/customize.sh
 VBoxGuestAdditions_*.iso
+vagrant/coredns

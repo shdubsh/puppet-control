@@ -3,7 +3,7 @@ Puppet Control Repo
 
 Warning
 ---
-This code is in early development.  Things could change at any time.
+This code is in early development.  Things could change or break at any time.
 
 Requirements
 ---
@@ -30,7 +30,7 @@ runpuppet
 
 Additional Hosts
 ---
-Vagrant_config.yaml
+Config.yaml
 ```yaml
 # -*- mode: yaml -*-
 # vi: set ft=yaml :
@@ -45,7 +45,7 @@ Vagrant_config.yaml
 
 TODO
 ---
-* DNS and DHCP currently rely on libvirt configuring DNSmasq correctly.  For Vagrant, this should be a service on the puppet master.
+* Centralize DNS configuration and enable custom domains
 * Linter and syntax checks.
 * Secrets management.
 * r10k environments
