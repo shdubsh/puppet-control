@@ -16,9 +16,9 @@ echo 'bash /vagrant/vagrant/runpuppet.sh' >> /usr/local/bin/runpuppet
 chmod +x /usr/local/bin/runpuppet
 
 if [ $(hostname) == 'puppet' ]; then
-echo '#!/bin/bash' > /usr/local/bin/kickstartpuppet
-echo 'bash /vagrant/vagrant/kickstartpuppet.sh' >> /usr/local/bin/kickstartpuppet
-chmod +x /usr/local/bin/kickstartpuppet
+echo '#!/bin/bash' > /usr/local/bin/kickstart_puppet
+echo 'bash /vagrant/vagrant/kickstart_puppet.sh' >> /usr/local/bin/kickstart_puppet
+chmod +x /usr/local/bin/kickstart_puppet
 fi
 
 # Vagrant dir is not available at provision time.  Helper script to load after ssh.

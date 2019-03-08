@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import requests
 import os
+from datetime import datetime
 
 PUPPET_MACHINE_DIR = '/vagrant/.vagrant/machines/puppet'
 PUPPET_IP = None
@@ -8,7 +9,7 @@ PUPPET_IP = None
 A_TEMPLATE = '{0}  5 IN A {1}' # {hostname}, {ip addr}
 
 HEADER = '''
-@ 1D IN SOA ns0 hostmaster (2019030521
+@ 1D IN SOA ns0 hostmaster ({}
   12H     ; refresh
   2H      ; retry
   2W      ; expiry
@@ -17,7 +18,7 @@ HEADER = '''
   1D  IN NS   ns0
 '''
 
-# Depends on kickstartpuppet planting the puppet ip address in the machines state directory
+# Depends on kickstart_puppet.sh planting the puppet ip address in the machines state directory
 if len(os.listdir(PUPPET_MACHINE_DIR)) > 1:
     print('; WARNING - Multiple puppet machine IP addresses found!  The first one I found might not be correct.')
 for provider in os.listdir(PUPPET_MACHINE_DIR):
@@ -26,7 +27,7 @@ for provider in os.listdir(PUPPET_MACHINE_DIR):
             PUPPET_IP = f.read()
             break
 
-print(HEADER)
+print(HEADER.format(int(datetime.now().timestamp())))
 print(A_TEMPLATE.format('ns0', PUPPET_IP))
 print(A_TEMPLATE.format('puppet', PUPPET_IP))
 

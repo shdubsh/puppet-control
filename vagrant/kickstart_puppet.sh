@@ -30,15 +30,16 @@ sudo mkdir /etc/coredns/zones
 # Seed zone
 python3 /usr/local/bin/zonefile_generator | sudo tee /etc/coredns/zones/test
 
-# Enable and start coredns.  Disable systemd-resolved
+# Enable, start, and use coredns.
+# Disable systemd-resolved and dhclient (started by vagrant)
 sudo cp /vagrant/vagrant/coredns.service /lib/systemd/system/coredns.service
 sudo useradd -s /usr/sbin/nologin -m -d /home/coredns coredns
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
+sudo kill $(pgrep dhclient)
 sudo systemctl enable coredns.service
 sudo systemctl start coredns.service
-
-# Use coredns instance
+sudo rm /etc/resolv.conf
 printf 'nameserver 127.0.0.1\nsearch test\n' | sudo tee /etc/resolv.conf
 
 # Install, configure, and start Puppet
@@ -49,6 +50,6 @@ sudo systemctl restart puppetdb
 /usr/local/bin/runpuppet
 
 # Install clean_node
-ln -s /vagrant/vagrant/clean_node.sh /usr/local/bin/clean_node
+sudo ln -s /vagrant/vagrant/clean_node.sh /usr/local/bin/clean_node
 chmod +x /usr/local/bin/clean_node
 echo ---------------  Puppet Kickstart Complete ---------------
